@@ -1,5 +1,5 @@
 // Add your API key: get one from https://openweathermap.org/api
-const API_KEY = 'd864a9df20b04d9243da1e029492b994';
+const API_KEY = '620b6d3211b40866e37637f582dfd757';
 
 const form = document.getElementById('weather-form');
 const cityInput = document.getElementById('city');
