@@ -54,7 +54,7 @@ const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-re
 const typingElement = document.querySelector('.typing');
 const typingTextEl = typingElement ? typingElement.querySelector('.typing-text') : null;
 const caretEl = typingElement ? typingElement.querySelector('.caret') : null;
-const typingPhrases = ["Hi, I'm John Doe!", "Web Developer", "UI/UX Enthusiast"];
+const typingPhrases = ["Hi, I'm Sumit Sahani!", "Web Developer", "UI/UX Enthusiast"];
 function startTyping() {
   if (!typingTextEl) return;
   if (prefersReducedMotion) {
