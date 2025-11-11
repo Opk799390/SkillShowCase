@@ -28,7 +28,7 @@ or email me directly at **sahani.sumit3261@gmail.com**.
 ---
 
 ## 🌐 Live Demo
-👉 [Visit the website](https://yourusername.github.io/skillshowcase)
+👉 [Visit the website](https://github.com/Opk799390/SkillShowCase.git)
 
 ---
 
