@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="A simple, fast todo list app with local storage and keyboard shortcuts">
+  <title>Todo List — Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header>
+      <h1>✓ Todo List</h1>
+      <button id="toggle-dark" class="theme-btn" aria-label="Toggle dark mode">🌙</button>
+    </header>
+
+    <form id="todo-form" aria-label="Add todo">
+      <input id="todo-input" placeholder="Add a new task... (press Enter)" autocomplete="off" required>
+      <button type="submit" aria-label="Add task">+ Add</button>
+    </form>
+
+    <div id="empty-state" class="empty-state">
+      <p>✨ No tasks yet. Add one to get started!</p>
+    </div>
+
+    <ul id="todo-list" aria-live="polite" aria-label="Task list"></ul>
+
+    <div class="controls">
+      <button id="clear-completed" aria-label="Clear all completed tasks">Clear completed</button>
+      <span id="stats" class="stats"></span>
+      <a href="../.." class="back">← Back</a>
+    </div>
+
+    <div id="toast" class="toast"></div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

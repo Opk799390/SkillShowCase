@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Weather app with real-time forecasts and geolocation support">
+  <title>Weather App — Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="weather">
+    <header>
+      <h1>🌤️ Weather</h1>
+      <button id="toggle-dark" class="theme-btn">🌙</button>
+    </header>
+
+    <div class="input-group">
+      <form id="weather-form">
+        <div class="search-box">
+          <input id="city" type="text" placeholder="City name..." autocomplete="off" required>
+          <button type="submit" aria-label="Search">🔍</button>
+        </div>
+        <button type="button" id="geo-btn" aria-label="Use my location">📍 My Location</button>
+      </form>
+      <div class="units">
+        <button id="celsius-btn" class="unit active">°C</button>
+        <button id="fahrenheit-btn" class="unit">°F</button>
+      </div>
+    </div>
+
+    <div id="loading" class="loading hidden">
+      <div class="spinner"></div>
+      <p>Loading...</p>
+    </div>
+
+    <div id="error" class="error hidden"></div>
+
+    <div id="result" class="result hidden" aria-live="polite" aria-label="Weather information">
+      <div class="current">
+        <div class="city-info">
+          <h2 id="city-name"></h2>
+          <p id="description"></p>
+        </div>
+        <div class="temp-display">
+          <span id="temp-value" class="temp"></span>
+          <span id="temp-unit">°C</span>
+        </div>
+      </div>
+
+      <div class="details">
+        <div class="detail">
+          <span class="label">Feels like</span>
+          <span id="feels-like"></span>
+        </div>
+        <div class="detail">
+          <span class="label">Humidity</span>
+          <span id="humidity"></span>
+        </div>
+        <div class="detail">
+          <span class="label">Wind</span>
+          <span id="wind"></span>
+        </div>
+        <div class="detail">
+          <span class="label">Pressure</span>
+          <span id="pressure"></span>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <a href="../.." class="back">← Back</a>
+      <p class="note">Powered by <a href="https://openweathermap.org/" target="_blank" rel="noopener">OpenWeatherMap</a></p>
+    </footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
