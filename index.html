@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SkillShowcase - Portfolio of John Doe, a web developer specializing in modern, responsive web experiences">
+  <meta name="keywords" content="portfolio, web developer, front-end, JavaScript, React, UI/UX">
+  <meta name="author" content="John Doe">
+  <meta name="robots" content="index, follow">
+  <title>SkillShowcase | John Doe's Portfolio</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <script defer src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "John Doe",
+      "jobTitle": "Web Developer",
+      "url": "https://portfolio-demo.com",
+      "sameAs": [
+        "https://github.com/username",
+        "https://linkedin.com/in/username",
+        "https://twitter.com/username"
+      ]
+    }
+  </script>
+</head>
+<body>
+  <!-- Skip to content link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress"></div>
+
+  <!-- Dark/Light Mode Toggle -->
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+    <i class="fas fa-moon" aria-hidden="true"></i>
+  </button>
+
+  <!-- Header / Hero Section -->
+  <header id="hero">
+    <nav aria-label="Main navigation" class="sticky-nav">
+      <h1 class="logo">SkillShowcase</h1>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-menu">
+        <li><a href="#projects" aria-current="page">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="hero-content" id="main-content">
+      <h2 class="typing" aria-live="polite"><span class="typing-text"></span><span class="caret" aria-hidden="true"></span></h2>
+      <p>Creating modern, responsive, and interactive web experiences with a passion for clean code and user-focused design.</p>
+      <a href="#projects" class="btn" role="button">View Projects</a>
+    </div>
+  </header>
+
+  <!-- Projects Section -->
+  <section id="projects" aria-labelledby="projects-heading">
+    <h2 id="projects-heading">Projects</h2>
+    <div class="projects-container">
+  <article class="project-card" style="--index: 1" data-tilt>
+        <picture>
+          <source srcset="portfolio-preview.webp" type="image/webp">
+          <img src="portfolio-preview.jpg" alt="Portfolio Website Preview" loading="lazy">
+        </picture>
+        <h3>Portfolio Website</h3>
+        <p>A personal website showcasing my projects and skills, built with HTML, CSS, and JavaScript.</p>
+        <div class="project-links">
+          <a href="https://github.com/username/portfolio" target="_blank" aria-label="Portfolio GitHub repository">GitHub</a>
+          <a href="/index.html" aria-label="View live Portfolio Website">Live Demo</a>
+          <button class="btn preview-btn" data-preview="/index.html" aria-label="Preview Portfolio">Preview</button>
+        </div>
+      </article>
+  <article class="project-card" style="--index: 2" data-tilt>
+        <picture>
+          <source srcset="weather-app-preview.webp" type="image/webp">
+          <img src="weather-app-preview.jpg" alt="Weather App Preview" loading="lazy">
+        </picture>
+        <h3>Weather App</h3>
+        <p>Real-time weather application using OpenWeather API, featuring dynamic data and responsive design.</p>
+        <div class="project-links">
+          <a href="https://github.com/username/weather-app" target="_blank" aria-label="Weather App GitHub repository">GitHub</a>
+          <a href="/projects/weather-app/index.html" aria-label="View live Weather App">Live Demo</a>
+          <button class="btn preview-btn" data-preview="/projects/weather-app/index.html" aria-label="Preview Weather App">Preview</button>
+        </div>
+      </article>
+  <article class="project-card" style="--index: 3" data-tilt>
+        <picture>
+          <source srcset="todo-list-preview.webp" type="image/webp">
+          <img src="todo-list-preview.jpg" alt="Todo List Preview" loading="lazy">
+        </picture>
+        <h3>Todo List</h3>
+        <p>A responsive Todo List app with local storage, built using vanilla JavaScript.</p>
+        <div class="project-links">
+          <a href="https://github.com/username/todo-list" target="_blank" aria-label="Todo List GitHub repository">GitHub</a>
+          <a href="/projects/todo-list/index.html" aria-label="View live Todo List">Live Demo</a>
+          <button class="btn preview-btn" data-preview="/projects/todo-list/index.html" aria-label="Preview Todo List">Preview</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" aria-labelledby="skills-heading">
+    <h2 id="skills-heading">Skills</h2>
+    <div class="skills-container">
+      <div class="skill" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+        <p>HTML <span class="sr-only">90% proficiency</span></p>
+        <div class="skill-bar"><div class="skill-progress" data-progress="90"></div></div>
+      </div>
+      <div class="skill" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+        <p>CSS <span class="sr-only">85% proficiency</span></p>
+        <div class="skill-bar"><div class="skill-progress" data-progress="85"></div></div>
+      </div>
+      <div class="skill" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+        <p>JavaScript <span class="sr-only">80% proficiency</span></p>
+        <div class="skill-bar"><div class="skill-progress" data-progress="80"></div></div>
+      </div>
+      <div class="skill" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+        <p>React <span class="sr-only">75% proficiency</span></p>
+        <div class="skill-bar"><div class="skill-progress" data-progress="75"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" aria-labelledby="contact-heading">
+    <h2 id="contact-heading">Contact Me</h2>
+    <div class="contact-container">
+      <form id="contact-form" action="https://formspree.io/f/xyzlydzj" method="POST" aria-label="Contact form">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Name" required aria-describedby="name-error">
+        <span id="name-error" class="error-message sr-only"></span>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Email" required aria-describedby="email-error">
+        <span id="email-error" class="error-message sr-only"></span>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Message" required aria-describedby="message-error"></textarea>
+        <span id="message-error" class="error-message sr-only"></span>
+        <button type="submit" aria-label="Send message">Send Message</button>
+        <div class="form-loading sr-only" id="form-loading">Submitting...</div>
+      </form>
+      <div class="social-links" aria-label="Social media links">
+        <a href="https://github.com/username" target="_blank" aria-label="GitHub profile"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com/in/username" target="_blank" aria-label="LinkedIn profile"><i class="fab fa-linkedin"></i></a>
+        <a href="https://twitter.com/username" target="_blank" aria-label="Twitter profile"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+  </section>
+  </section>
+
+  <!-- Preview Modal (used to preview project demos in an iframe on larger screens) -->
+  <div id="preview-modal" class="modal" aria-hidden="true">
+    <div class="modal-overlay" tabindex="-1"></div>
+    <div class="modal-content" role="dialog" aria-modal="true" aria-label="Project Preview">
+      <button class="modal-close" aria-label="Close preview">&times;</button>
+      <iframe id="preview-iframe" src="" title="Project preview" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 SkillShowcase. All rights reserved.</p>
+    <a href="#hero" class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
+  </footer>
+
+  <!-- JavaScript -->
+  <script defer src="script.js"></script>
+
+  <!-- Google Analytics (Placeholder) -->
+  <!-- Replace with your GA tracking ID -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
+</body>
+</html>
