@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="About Sumit Sahani - Web Developer specializing in front-end development, responsive design, and user experience" />
+  <meta name="keywords" content="about, Sumit Sahani, web developer, front-end, portfolio" />
+  <title>SkillShowcase | About Sumit Sahani</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body data-page="about">
+  <!-- Loader element remains in index only; other pages will animate in -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <button class="theme-toggle" id="theme-toggle-about" aria-label="Toggle dark mode" aria-pressed="false"><i class="fas fa-moon"></i></button>
+
+  <nav aria-label="Main navigation" class="sticky-nav">
+    <div class="nav-left">
+      <a class="logo" href="index.html">SkillShowcase</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><i class="fas fa-bars"></i></button>
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" aria-current="page">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main id="main-content" class="container">
+    <header class="page-header">
+      <h1>About Me</h1>
+      <p>Passionate web developer focused on building accessible and performant web experiences.</p>
+    </header>
+
+    <section id="bio" aria-labelledby="bio-heading">
+      <h2 id="bio-heading">Biography</h2>
+      <div class="bio-grid">
+        <div class="bio-text glass-card">
+          <p>Hello — I'm Sumit Sahani, a front-end developer with a passion for polished UI and clean code. I enjoy building interactive web apps and learning new front-end techniques.</p>
+          <p>I focus on performance, accessibility, and delightful micro-interactions.</p>
+          <a href="projects.html" class="btn">See my work</a>
+        </div>
+        <div class="bio-stats">
+          <div class="stat glass-card">
+            <h3>5+</h3>
+            <p>Years experience</p>
+          </div>
+          <div class="stat glass-card">
+            <h3>50+</h3>
+            <p>Projects</p>
+          </div>
+          <div class="stat glass-card">
+            <h3>100%</h3>
+            <p>Client satisfaction</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" aria-labelledby="exp-heading">
+      <h2 id="exp-heading">Experience</h2>
+      <ul class="timeline">
+        <li class="timeline-item"><strong>2024</strong> — Senior Front-end Developer at Acme Co.</li>
+        <li class="timeline-item"><strong>2023</strong> — Full-stack Developer | Freelance Projects & UI/UX Design</li>
+        <li class="timeline-item"><strong>2022</strong> — Junior Developer | Web Development</li>
+        <li class="timeline-item"><strong>2021</strong> — Started professional web development journey</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 SkillShowcase</p>
+    <a href="index.html" class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
+  </footer>
+
+  <script defer src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script defer src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <script defer src="script.js"></script>
+</body>
+</html>
