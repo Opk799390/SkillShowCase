@@ -1,198 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="SkillShowcase - Portfolio of Sumit Sahani, a web developer specializing in modern, responsive web experiences">
-  <meta name="keywords" content="portfolio, web developer, front-end, JavaScript, React, UI/UX">
-  <meta name="author" content="Sumit">
-  <meta name="robots" content="index, follow">
-  <title>SkillShowcase | Sumit's Portfolio</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="SkillShowcase - Portfolio of Sumit Sahani, a web developer specializing in modern, responsive web experiences and UI/UX design" />
+  <meta name="keywords" content="portfolio, web developer, front-end, JavaScript, UI/UX, Sumit Sahani" />
+  <meta name="author" content="Sumit Sahani" />
+  <title>SkillShowcase | Sumit Sahani — Home</title>
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" type="image/png" href="favicon.png" />
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
 
   <!-- Font Awesome -->
   <script defer src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
   <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
-
-  <!-- Structured Data for SEO -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Sumit Sahani",
-      "jobTitle": "Web Developer",
-      "url": "https://portfolio-demo.com",
-      "sameAs": [
-        "https://github.com/username",
-        "https://linkedin.com/in/username",
-        "https://twitter.com/username"
-      ]
-    }
-  </script>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <!-- Skip to content link -->
+<body data-page="home">
+  <!-- Loader -->
+  <div id="loader" class="loader" aria-hidden="false" role="status" aria-label="Loading portfolio">
+    <div class="loader-backdrop"></div>
+    <div class="loader-inner">
+      <!-- Animated "S" logo (SVG) -->
+      <svg id="loader-logo" viewBox="0 0 200 200" width="140" height="140" aria-hidden="true">
+        <defs>
+          <linearGradient id="grad-s" x1="0" x2="1">
+            <stop offset="0%" stop-color="#0fd3eb"/>
+            <stop offset="50%" stop-color="#6a11cb"/>
+            <stop offset="100%" stop-color="#2575fc"/>
+          </linearGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+        <g filter="url(#glow)">
+          <path id="letter-s" fill="url(#grad-s)" d="M50 40c12-24 76-18 88 6 10 20-12 30-32 44-24 16-34 26-28 52 6 26 36 32 60 18" stroke="rgba(0,0,0,0.06)" stroke-width="0"/>
+        </g>
+      </svg>
+      <p class="loader-text">Loading Portfolio V2…</p>
+    </div>
+  </div>
+
+  <!-- Skip link -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <!-- Scroll Progress Indicator -->
-  <div class="scroll-progress"></div>
+  <!-- Scroll progress -->
+  <div class="scroll-progress" aria-hidden="true"></div>
 
-  <!-- Dark/Light Mode Toggle -->
+  <!-- Theme Toggle (shared button) -->
   <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
     <i class="fas fa-moon" aria-hidden="true"></i>
   </button>
 
-  <!-- Header / Hero Section -->
-  <header id="hero">
+  <!-- Header / Hero -->
+  <header id="hero" class="glass-hero">
     <nav aria-label="Main navigation" class="sticky-nav">
-      <h1 class="logo">SkillShowcase</h1>
+      <div class="nav-left">
+        <a class="logo" href="index.html" aria-label="SkillShowcase home">SkillShowcase</a>
+      </div>
       <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
         <i class="fas fa-bars"></i>
       </button>
       <ul class="nav-menu">
-        <li><a href="#projects" aria-current="page">Projects</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
-    <div class="hero-content" id="main-content">
-      <h2 class="typing" aria-live="polite"><span class="typing-text"></span><span class="caret" aria-hidden="true"></span></h2>
-      <p>Creating modern, responsive, and interactive web experiences with a passion for clean code and user-focused design.</p>
-      <a href="#projects" class="btn" role="button">View Projects</a>
+
+    <div class="hero-content container" id="main-content">
+      <div class="hero-left">
+        <h2 class="typing" aria-live="polite"><span class="typing-text"></span><span class="caret" aria-hidden="true"></span></h2>
+        <p class="subheading">Crafting modern, responsive, and interactive web experiences with a passion for clean code, performance optimization, and user-focused design.</p>
+        <div class="hero-ctas">
+          <a href="projects.html" class="btn">View Projects</a>
+          <a href="about.html" class="btn btn-outline">About Me</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-card glass-card" aria-hidden="true">
+          <img src="assets/images/portfolio-preview.svg" alt="Portfolio preview" loading="lazy">
+          <div class="hero-card-meta">
+            <h3>Sumit Sahani</h3>
+            <p>Web Developer • UI/UX Enthusiast</p>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
-  <!-- Projects Section -->
-  <section id="projects" aria-labelledby="projects-heading">
-    <h2 id="projects-heading">Projects</h2>
-    <div class="projects-container">
-  <article class="project-card" style="--index: 1" data-tilt>
-        <picture>
-          <source srcset="portfolio-preview.webp" type="image/webp">
-          <img src="portfolio-preview.jpg" alt="Portfolio Website Preview" loading="lazy">
-        </picture>
-        <h3>Portfolio Website</h3>
-        <p>A personal website showcasing my projects and skills, built with HTML, CSS, and JavaScript.</p>
-        <div class="project-links">
-          <a href="https://github.com/username/portfolio" target="_blank" aria-label="Portfolio GitHub repository">GitHub</a>
-          <a href="/index.html" aria-label="View live Portfolio Website">Live Demo</a>
-          <button class="btn preview-btn" data-preview="/index.html" aria-label="Preview Portfolio">Preview</button>
-        </div>
-      </article>
-  <article class="project-card" style="--index: 2" data-tilt>
-        <picture>
-          <source srcset="weather-app-preview.webp" type="image/webp">
-          <img src="weather-app-preview.jpg" alt="Weather App Preview" loading="lazy">
-        </picture>
-        <h3>Weather App</h3>
-        <p>Real-time weather application using OpenWeather API, featuring dynamic data and responsive design.</p>
-        <div class="project-links">
-          <a href="https://github.com/username/weather-app" target="_blank" aria-label="Weather App GitHub repository">GitHub</a>
-          <a href="/projects/weather-app/index.html" aria-label="View live Weather App">Live Demo</a>
-          <button class="btn preview-btn" data-preview="/projects/weather-app/index.html" aria-label="Preview Weather App">Preview</button>
-        </div>
-      </article>
-  <article class="project-card" style="--index: 3" data-tilt>
-        <picture>
-          <source srcset="todo-list-preview.webp" type="image/webp">
-          <img src="todo-list-preview.jpg" alt="Todo List Preview" loading="lazy">
-        </picture>
-        <h3>Todo List</h3>
-        <p>A responsive Todo List app with local storage, built using vanilla JavaScript.</p>
-        <div class="project-links">
-          <a href="https://github.com/username/todo-list" target="_blank" aria-label="Todo List GitHub repository">GitHub</a>
-          <a href="/projects/todo-list/index.html" aria-label="View live Todo List">Live Demo</a>
-          <button class="btn preview-btn" data-preview="/projects/todo-list/index.html" aria-label="Preview Todo List">Preview</button>
-        </div>
-      </article>
-    </div>
-  </section>
+  <main>
+    <section id="projects-teaser" aria-labelledby="projects-heading">
+      <h2 id="projects-heading">Selected Projects</h2>
+      <div class="projects-row container" id="projects-teaser-row">
+        <!-- populated by script with same items as projects page -->
+      </div>
+    </section>
 
-  <!-- Skills Section -->
-  <section id="skills" aria-labelledby="skills-heading">
-    <h2 id="skills-heading">Skills</h2>
-    <div class="skills-container">
-      <div class="skill" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-        <p>HTML <span class="sr-only">90% proficiency</span></p>
-        <div class="skill-bar"><div class="skill-progress" data-progress="90"></div></div>
+    <section id="skills" aria-labelledby="skills-heading">
+      <h2 id="skills-heading">Technical Skills</h2>
+      <div class="skills-container container">
+        <div class="skill" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="--index:1">
+          <p>HTML5 <span class="sr-only">95% proficiency</span></p>
+          <div class="skill-bar"><div class="skill-progress" data-progress="95"></div></div>
+        </div>
+        <div class="skill" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="--index:2">
+          <p>CSS3 <span class="sr-only">90% proficiency</span></p>
+          <div class="skill-bar"><div class="skill-progress" data-progress="90"></div></div>
+        </div>
+        <div class="skill" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="--index:3">
+          <p>JavaScript <span class="sr-only">88% proficiency</span></p>
+          <div class="skill-bar"><div class="skill-progress" data-progress="88"></div></div>
+        </div>
+        <div class="skill" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="--index:4">
+          <p>React/Vue.js <span class="sr-only">85% proficiency</span></p>
+          <div class="skill-bar"><div class="skill-progress" data-progress="85"></div></div>
+        </div>
+        <div class="skill" role="progressbar" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100" style="--index:5">
+          <p>Responsive Design <span class="sr-only">82% proficiency</span></p>
+          <div class="skill-bar"><div class="skill-progress" data-progress="82"></div></div>
+        </div>
+        <div class="skill" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="--index:6">
+          <p>UX/UI Design <span class="sr-only">80% proficiency</span></p>
+          <div class="skill-bar"><div class="skill-progress" data-progress="80"></div></div>
+        </div>
       </div>
-      <div class="skill" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-        <p>CSS <span class="sr-only">85% proficiency</span></p>
-        <div class="skill-bar"><div class="skill-progress" data-progress="85"></div></div>
-      </div>
-      <div class="skill" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
-        <p>JavaScript <span class="sr-only">80% proficiency</span></p>
-        <div class="skill-bar"><div class="skill-progress" data-progress="80"></div></div>
-      </div>
-      <div class="skill" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-        <p>React <span class="sr-only">75% proficiency</span></p>
-        <div class="skill-bar"><div class="skill-progress" data-progress="75"></div></div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact Section -->
-  <section id="contact" aria-labelledby="contact-heading">
-    <h2 id="contact-heading">Contact Me</h2>
-    <div class="contact-container">
-      <form id="contact-form" action="https://formspree.io/f/xyzlydzj" method="POST" aria-label="Contact form">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Name" required aria-describedby="name-error">
-        <span id="name-error" class="error-message sr-only"></span>
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="Email" required aria-describedby="email-error">
-        <span id="email-error" class="error-message sr-only"></span>
-        <label for="message">Message</label>
-        <textarea id="message" name="message" placeholder="Message" required aria-describedby="message-error"></textarea>
-        <span id="message-error" class="error-message sr-only"></span>
-        <button type="submit" aria-label="Send message">Send Message</button>
-        <div class="form-loading sr-only" id="form-loading">Submitting...</div>
-      </form>
-      <div class="social-links" aria-label="Social media links">
-        <a href="https://github.com/username" target="_blank" aria-label="GitHub profile"><i class="fab fa-github"></i></a>
-        <a href="https://linkedin.com/in/username" target="_blank" aria-label="LinkedIn profile"><i class="fab fa-linkedin"></i></a>
-        <a href="https://twitter.com/username" target="_blank" aria-label="Twitter profile"><i class="fab fa-twitter"></i></a>
-      </div>
-    </div>
-  </section>
-  </section>
-
-  <!-- Preview Modal (used to preview project demos in an iframe on larger screens) -->
-  <div id="preview-modal" class="modal" aria-hidden="true">
-    <div class="modal-overlay" tabindex="-1"></div>
-    <div class="modal-content" role="dialog" aria-modal="true" aria-label="Project Preview">
-      <button class="modal-close" aria-label="Close preview">&times;</button>
-      <iframe id="preview-iframe" src="" title="Project preview" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
-    </div>
-  </div>
+    <section id="contact-cta" aria-labelledby="contact-heading-cta">
+      <h2 id="contact-heading-cta">Ready to Collaborate?</h2>
+      <p>I'm actively seeking new opportunities and exciting challenges. Available for freelance projects and full-time positions. Let's create something amazing together.</p>
+      <a href="contact.html" class="btn">Get in touch</a>
+    </section>
+  </main>
 
   <footer>
     <p>&copy; 2025 SkillShowcase. All rights reserved.</p>
     <a href="#hero" class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
   </footer>
 
-  <!-- JavaScript -->
-  <script defer src="script.js"></script>
+  <!-- GSAP (CDN) -->
+  <script defer src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script defer src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
 
-  <!-- Google Analytics (Placeholder) -->
-  <!-- Replace with your GA tracking ID -->
-  <!--
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script>
-  -->
+  <!-- Shared JS -->
+  <script defer src="script.js"></script>
 </body>
 </html>
