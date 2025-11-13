@@ -1,38 +1,199 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="A simple, fast todo list app with local storage and keyboard shortcuts">
-  <title>Todo List — Demo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A smooth, animated premium todo list app with advanced features">
+  <meta name="keywords" content="todo list, task manager, productivity, app">
+  <meta name="author" content="Todo App Team">
+  <meta name="robots" content="index, follow">
+  <title>Todo List — Premium</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.14.0/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/idb@8.0.0/build/umd.js" defer></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <main class="app">
-    <header>
-      <h1>✓ Todo List</h1>
-      <button id="toggle-dark" class="theme-btn" aria-label="Toggle dark mode">🌙</button>
+  <div class="skip-nav">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+  </div>
+  
+  <main class="app" id="main-content" role="main">
+    <header class="app-header">
+      <h1>✓ Todo List Premium</h1>
+      <div class="header-controls">
+        <button id="toggle-dark" class="theme-btn" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+          <span class="icon">🌙</span>
+        </button>
+        <button id="toggle-notifications" class="notify-btn" aria-label="Toggle notifications" title="Toggle notifications">
+          <span class="icon">🔔</span>
+        </button>
+      </div>
     </header>
 
-    <form id="todo-form" aria-label="Add todo">
-      <input id="todo-input" placeholder="Add a new task... (press Enter)" autocomplete="off" required>
-      <button type="submit" aria-label="Add task">+ Add</button>
-    </form>
+    <section class="task-input" aria-labelledby="add-task-heading">
+      <h2 id="add-task-heading" class="visually-hidden">Add New Task</h2>
+      <form id="todo-form" aria-label="Add new task">
+        <div class="input-group">
+          <input 
+            id="todo-input" 
+            type="text"
+            placeholder="Add a new task... (press Enter)" 
+            autocomplete="off" 
+            required 
+            aria-required="true"
+            aria-describedby="todo-error"
+          >
+          <span id="todo-error" class="error-message visually-hidden"></span>
+          
+          <select id="priority" aria-label="Task priority">
+            <option value="medium" selected>Medium Priority</option>
+            <option value="low">Low Priority</option>
+            <option value="high">High Priority</option>
+          </select>
+          
+          <input 
+            id="due-date" 
+            type="date" 
+            aria-label="Task due date"
+            min="2025-11-12"
+          >
+          
+          <div class="category-select">
+            <select id="category" aria-label="Task category">
+              <option value="general" selected>General</option>
+              <option value="work">Work</option>
+              <option value="personal">Personal</option>
+              <option value="urgent">Urgent</option>
+            </select>
+          </div>
+          
+          <button type="submit" class="add-btn" aria-label="Add task">
+            <span class="icon">+</span> Add
+          </button>
+        </div>
+      </form>
+    </section>
 
-    <div id="empty-state" class="empty-state">
-      <p>✨ No tasks yet. Add one to get started!</p>
-    </div>
+    <section class="task-controls" aria-labelledby="controls-heading">
+      <h2 id="controls-heading" class="visually-hidden">Task Controls</h2>
+      <div class="toolbar">
+        <div class="filters" role="tablist" aria-label="Filter tasks">
+          <button 
+            class="filter active" 
+            data-filter="all" 
+            role="tab" 
+            aria-selected="true"
+            aria-controls="todo-list"
+          >All</button>
+          <button 
+            class="filter" 
+            data-filter="active" 
+            role="tab" 
+            aria-selected="false"
+            aria-controls="todo-list"
+          >Active</button>
+          <button 
+            class="filter" 
+            data-filter="completed" 
+            role="tab" 
+            aria-selected="false"
+            aria-controls="todo-list"
+          >Completed</button>
+        </div>
 
-    <ul id="todo-list" aria-live="polite" aria-label="Task list"></ul>
+        <div class="search-group">
+          <input 
+            id="search" 
+            type="search"
+            placeholder="Search tasks..." 
+            aria-label="Search tasks"
+            incremental
+          >
+          <button 
+            id="undo" 
+            class="undo-btn" 
+            aria-label="Undo last action"
+            title="Undo (Ctrl+Z)"
+          >
+            <span class="icon">↶</span>
+          </button>
+        </div>
+      </div>
+    </section>
 
-    <div class="controls">
-      <button id="clear-completed" aria-label="Clear all completed tasks">Clear completed</button>
-      <span id="stats" class="stats"></span>
-      <a href="../.." class="back">← Back</a>
-    </div>
+    <section class="task-list" aria-labelledby="task-list-heading">
+      <h2 id="task-list-heading" class="visually-hidden">Task List</h2>
+      <div id="empty-state" class="empty-state" role="alert">
+        <p>✨ No tasks yet. Add one to get started!</p>
+      </div>
+      <ul id="todo-list" aria-live="polite" aria-label="Task list"></ul>
+    </section>
 
-    <div id="toast" class="toast"></div>
+    <section class="task-footer" aria-labelledby="footer-controls-heading">
+      <h2 id="footer-controls-heading" class="visually-hidden">Footer Controls</h2>
+      <div class="controls">
+        <div class="stats-group">
+          <span id="stats" class="stats" aria-live="polite"></span>
+          <span id="progress" class="progress" aria-label="Completion progress"></span>
+        </div>
+        
+        <div class="action-buttons">
+          <button 
+            id="clear-completed" 
+            class="clear-btn" 
+            aria-label="Clear all completed tasks"
+          >Clear Completed</button>
+          
+          <button 
+            id="clear-all" 
+            class="clear-btn" 
+            aria-label="Clear all tasks"
+          >Clear All</button>
+          
+          <button 
+            id="export-tasks" 
+            class="export-btn" 
+            aria-label="Export tasks"
+            title="Export tasks as JSON"
+          >Export</button>
+        </div>
+        
+        <a href="../.." class="back" aria-label="Back to home">← Back</a>
+      </div>
+    </section>
+
+    <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
   </main>
-  <script src="script.js"></script>
+
+  <aside class="settings-panel" aria-labelledby="settings-heading" hidden>
+    <h2 id="settings-heading">Settings</h2>
+    <button class="close-settings" aria-label="Close settings">✕</button>
+    <form id="settings-form">
+      <div class="setting-group">
+        <label for="default-priority">Default Priority:</label>
+        <select id="default-priority">
+          <option value="medium" selected>Medium</option>
+          <option value="low">Low</option>
+          <option value="high">High</option>
+        </select>
+      </div>
+      <div class="setting-group">
+        <label for="notifications">Enable Notifications:</label>
+        <input type="checkbox" id="notifications" checked>
+      </div>
+      <button type="submit" class="save-settings">Save</button>
+    </form>
+  </aside>
+
+  <footer class="app-footer" role="contentinfo">
+    <p>&copy; 2025 Todo List Premium. All rights reserved.</p>
+    <nav aria-label="Footer navigation">
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/help">Help</a>
+    </nav>
+  </footer>
 </body>
 </html>
