@@ -1,77 +1,86 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Weather app with real-time forecasts and geolocation support">
-  <title>Weather App</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Real-time weather forecasts with geolocation support">
+  <meta name="keywords" content="weather, forecast, geolocation, real-time">
+  <meta name="author" content="Sumit Sahani">
+  <meta property="og:title" content="Weather App Demo">
+  <meta property="og:description" content="Check real-time weather forecasts with geolocation support">
+  <meta property="og:type" content="website">
+  <title>Weather App — Demo</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌤️</text></svg>">
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.14.0/gsap.min.js" defer></script>
 </head>
 <body>
-  <main class="weather">
+  <main class="weather" role="main">
     <header>
       <h1>🌤️ Weather</h1>
-      <button id="toggle-dark" class="theme-btn">🌙</button>
+      <button id="toggle-dark" class="theme-btn" aria-label="Toggle dark mode" type="button">🌙</button>
     </header>
-
-    <div class="input-group">
-      <form id="weather-form">
+    <section class="input-group" aria-label="Search weather">
+      <form id="weather-form" aria-label="Weather search form">
         <div class="search-box">
-          <input id="city" type="text" placeholder="City name..." autocomplete="off" required>
-          <button type="submit" aria-label="Search">🔍</button>
+          <label for="city" class="visually-hidden">Enter city name</label>
+          <input id="city" type="text" placeholder="City name..." autocomplete="off" required aria-describedby="city-error">
+          <button type="submit" aria-label="Search weather">🔍</button>
         </div>
         <button type="button" id="geo-btn" aria-label="Use my location">📍 My Location</button>
       </form>
-      <div class="units">
-        <button id="celsius-btn" class="unit active">°C</button>
-        <button id="fahrenheit-btn" class="unit">°F</button>
+      <div class="units" role="radiogroup" aria-label="Temperature units">
+        <button id="celsius-btn" class="unit active" role="radio" aria-checked="true" aria-label="Celsius">°C</button>
+        <button id="fahrenheit-btn" class="unit" role="radio" aria-checked="false" aria-label="Fahrenheit">°F</button>
       </div>
+    </section>
+    <div id="loading" class="loading hidden" aria-live="polite">
+      <div class="spinner" aria-hidden="true"></div>
+      <p>Loading weather data...</p>
     </div>
-
-    <div id="loading" class="loading hidden">
-      <div class="spinner"></div>
-      <p>Loading...</p>
-    </div>
-
-    <div id="error" class="error hidden"></div>
-
-    <div id="result" class="result hidden" aria-live="polite" aria-label="Weather information">
+    <div id="error" class="error hidden" role="alert" aria-live="assertive"></div>
+    <section id="result" class="result hidden" aria-live="polite" aria-label="Weather information">
       <div class="current">
         <div class="city-info">
-          <h2 id="city-name"></h2>
-          <p id="description"></p>
+          <h2 id="city-name" aria-label="City name"></h2>
+          <p id="description" aria-label="Weather description"></p>
+          <p id="updated" class="updated" aria-label="Last updated"></p>
         </div>
         <div class="temp-display">
-          <span id="temp-value" class="temp"></span>
-          <span id="temp-unit">°C</span>
+          <span id="temp-value" class="temp" aria-label="Current temperature"></span>
+          <span id="temp-unit" aria-label="Temperature unit">°C</span>
         </div>
       </div>
-
-      <div class="details">
+      <div class="details" aria-label="Weather details">
         <div class="detail">
           <span class="label">Feels like</span>
-          <span id="feels-like"></span>
+          <span id="feels-like" aria-label="Feels like temperature"></span>
         </div>
         <div class="detail">
           <span class="label">Humidity</span>
-          <span id="humidity"></span>
+          <span id="humidity" aria-label="Humidity level"></span>
         </div>
         <div class="detail">
           <span class="label">Wind</span>
-          <span id="wind"></span>
+          <span id="wind" aria-label="Wind speed"></span>
         </div>
         <div class="detail">
           <span class="label">Pressure</span>
-          <span id="pressure"></span>
+          <span id="pressure" aria-label="Atmospheric pressure"></span>
         </div>
       </div>
-    </div>
-
+    </section>
     <footer>
-      <a href="../.." class="back">← Back</a>
-      <p class="note">Powered by <a href="https://openweathermap.org/" target="_blank" rel="noopener">OpenWeatherMap</a></p>
+      <a href="../.." class="back" aria-label="Back to homepage">← Back</a>
+      <p class="note">Powered by <a href="https://openweathermap.org/" target="_blank" rel="noopener noreferrer">OpenWeatherMap</a></p>
+      <a href="https://github.com/sahani-vishnu/weather-app" class="github" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">View on GitHub</a>
     </footer>
   </main>
-  <script src="script.js"></script>
+  <noscript>
+    <div class="no-js" role="alert">
+      <p>JavaScript is disabled. Please enable JavaScript to use the weather app.</p>
+    </div>
+  </noscript>
+  <script src="script.js" defer></script>
 </body>
 </html>
