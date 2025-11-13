@@ -1,18 +1,22 @@
 :root {
-  --bg: #f7f7fb;
+  --bg: linear-gradient(145deg, #fdfbfb, #ebedee);
   --card: #fff;
   --text: #1a1a1a;
-  --accent: #2575fc;
+  --accent: linear-gradient(90deg, #2575fc, #6a11cb);
   --success: #10b981;
   --danger: #ef4444;
   --muted: #6b7280;
+  --shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  --border-radius: 12px;
+  --transition: all 0.3s ease;
 }
 
-body.dark-mode {
-  --bg: #0f0f0f;
+body[data-theme="dark"] {
+  --bg: linear-gradient(145deg, #0f0f0f, #1a1a1a);
   --card: #1a1a1a;
   --text: #f5f5f5;
   --muted: #9ca3af;
+  --shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
 * {
@@ -20,244 +24,381 @@ body.dark-mode {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  line-height: 1.5;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   margin: 0;
+  padding: 0;
   background: var(--bg);
   color: var(--text);
-  transition: background 0.3s, color 0.3s;
+  transition: var(--transition);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .app {
-  max-width: 680px;
-  margin: 0 auto;
-  padding: 24px;
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
 }
 
-header {
+/* Skip Navigation */
+.skip-nav {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+.skip-link:focus {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background: var(--card);
+  padding: 8px 12px;
+  border-radius: var(--border-radius);
+  z-index: 1000;
+  color: var(--text);
+  text-decoration: none;
+}
+
+/* Header */
+.app-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 2rem;
 }
 
-h1 {
-  margin: 0;
-  font-size: 2rem;
-}
-
-.theme-btn {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 8px;
-  transition: background 0.2s;
-}
-
-.theme-btn:hover {
-  background: rgba(0, 0, 0, 0.1);
-}
-
-body.dark-mode .theme-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-#todo-form {
+.header-controls {
   display: flex;
-  gap: 8px;
-  margin-bottom: 20px;
+  gap: 0.5rem;
 }
 
-#todo-input {
-  flex: 1;
-  padding: 12px 14px;
-  border-radius: 8px;
-  border: 2px solid #e5e7eb;
+.theme-btn, .notify-btn {
+  background: var(--card);
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.theme-btn:hover, .notify-btn:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow);
+}
+
+/* Task Input */
+.task-input .input-group {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr auto;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+#todo-form input,
+#todo-form select {
+  padding: 10px 12px;
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  font-size: 0.95rem;
   background: var(--card);
   color: var(--text);
-  font-size: 1rem;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: var(--transition);
 }
 
-#todo-input:focus {
+#todo-form input:focus,
+#todo-form select:focus {
+  border-color: #2575fc;
+  box-shadow: 0 0 8px rgba(37, 117, 252, 0.3);
   outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.1);
 }
 
 #todo-form button {
   background: var(--accent);
   color: #fff;
-  border: none;
-  padding: 12px 16px;
-  border-radius: 8px;
-  cursor: pointer;
   font-weight: 600;
-  transition: background 0.2s, transform 0.1s;
+  border-radius: var(--border-radius);
+  padding: 8px 14px;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transition);
 }
 
 #todo-form button:hover {
-  background: #1d5bdb;
+  transform: scale(1.06);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-#todo-form button:active {
-  transform: scale(0.98);
+.error-message {
+  color: var(--danger);
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  display: block;
 }
 
+/* Task Controls */
+.task-controls .toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.filters {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.filter {
+  background: var(--card);
+  border: none;
+  padding: 8px 16px;
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+  color: var(--text);
+  transition: var(--transition);
+}
+
+.filter[aria-selected="true"] {
+  background: linear-gradient(90deg, #2575fc, #6a11cb);
+  color: #fff;
+}
+
+.filter:hover {
+  background: rgba(37, 117, 252, 0.1);
+}
+
+.search-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#search {
+  padding: 8px 12px;
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: var(--card);
+  color: var(--text);
+  width: 200px;
+}
+
+.undo-btn {
+  background: var(--card);
+  border: none;
+  padding: 8px;
+  border-radius: var(--border-radius);
+  font-size: 1.2rem;
+  transition: var(--transition);
+}
+
+.undo-btn:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow);
+}
+
+/* Task List */
 .empty-state {
   text-align: center;
-  padding: 40px 20px;
-  color: var(--muted);
-}
-
-.empty-state.hidden {
-  display: none;
-}
-
-#todo-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 24px;
+  padding: 2rem;
+  background: var(--card);
+  border-radius: var(--border-radius);
+  margin-bottom: 1.5rem;
 }
 
 #todo-list li {
   background: var(--card);
   padding: 14px 16px;
-  border-radius: 8px;
-  margin-bottom: 8px;
+  border-radius: var(--border-radius);
+  margin-bottom: 12px;
   display: flex;
   align-items: center;
   gap: 12px;
-  transition: all 0.2s;
   border-left: 4px solid transparent;
+  transition: var(--transition);
 }
 
 #todo-list li:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
 }
 
 #todo-list li.completed {
-  opacity: 0.6;
-  background: rgba(16, 185, 129, 0.1);
   border-left-color: var(--success);
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.2));
 }
 
-#todo-list li.completed .label {
-  text-decoration: line-through;
-  color: var(--muted);
+/* Badges */
+.badge {
+  padding: 6px 8px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 500;
 }
 
-#todo-list input[type='checkbox'] {
-  cursor: pointer;
-  width: 20px;
-  height: 20px;
-  accent-color: var(--success);
+.badge.priority-low {
+  background: #ecfdf5;
+  color: #065f46;
 }
 
-.label {
-  flex: 1;
-  word-break: break-word;
+.badge.priority-medium {
+  background: #fff7ed;
+  color: #92400e;
 }
 
-.todo-actions {
-  display: flex;
-  gap: 6px;
+.badge.priority-high {
+  background: #fff1f2;
+  color: #991b1b;
 }
 
-.todo-actions button {
-  background: none;
-  border: 1px solid #e5e7eb;
-  padding: 6px 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  transition: all 0.2s;
+.badge.due {
+  background: rgba(0, 0, 0, 0.04);
   color: var(--text);
 }
 
-.todo-actions button:hover {
-  background: rgba(0, 0, 0, 0.05);
-  border-color: var(--muted);
+.badge.category {
+  background: rgba(37, 117, 252, 0.1);
+  color: #2575fc;
 }
 
-body.dark-mode .todo-actions button:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.todo-actions .delete {
-  color: var(--danger);
-  border-color: rgba(239, 68, 68, 0.3);
-}
-
-.todo-actions .delete:hover {
-  background: rgba(239, 68, 68, 0.1);
-  border-color: var(--danger);
-}
-
-.controls {
+/* Task Footer */
+.task-footer .controls {
   display: flex;
-  gap: 12px;
+  justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  margin-top: 20px;
+  margin-top: 1.5rem;
 }
 
-#clear-completed {
-  background: none;
-  border: 1px solid var(--muted);
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  color: var(--text);
-  font-size: 0.9rem;
-  transition: all 0.2s;
+.stats-group {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
 
-#clear-completed:hover {
-  background: rgba(239, 68, 68, 0.1);
-  border-color: var(--danger);
-  color: var(--danger);
-}
-
-#clear-completed:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.stats {
-  flex: 1;
+.progress {
   font-size: 0.9rem;
   color: var(--muted);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.clear-btn, .export-btn {
+  background: var(--card);
+  border: none;
+  padding: 8px 16px;
+  border-radius: var(--border-radius);
+  color: var(--text);
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.clear-btn:hover {
+  background: var(--danger);
+  color: #fff;
+}
+
+.export-btn:hover {
+  background: var(--success);
+  color: #fff;
 }
 
 .back {
+  color: var(--muted);
   text-decoration: none;
-  color: var(--accent);
-  font-weight: 600;
-  padding: 8px 12px;
-  border-radius: 6px;
-  transition: background 0.2s;
+  font-size: 0.9rem;
 }
 
 .back:hover {
-  background: rgba(37, 117, 252, 0.1);
+  color: var(--text);
 }
 
-.toast {
+/* Settings Panel */
+.settings-panel {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  top: 0;
+  right: -300px;
+  width: 300px;
+  height: 100%;
+  background: var(--card);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  transition: right 0.3s ease;
+  z-index: 1000;
+}
+
+.settings-panel[hidden] {
+  display: none;
+}
+
+.settings-panel:not([hidden]) {
+  right: 0;
+}
+
+.close-settings {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--text);
+}
+
+.setting-group {
+  margin-bottom: 1.5rem;
+}
+
+.setting-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.setting-group select,
+.setting-group input[type="checkbox"] {
+  width: 100%;
+  padding: 8px;
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   background: var(--card);
   color: var(--text);
-  padding: 12px 16px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.save-settings {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: var(--border-radius);
+  width: 100%;
+  transition: var(--transition);
+}
+
+.save-settings:hover {
+  transform: scale(1.06);
+  box-shadow: var(--shadow);
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 14px 20px;
+  border-radius: var(--border-radius);
+  background: var(--card);
+  color: var(--text);
+  box-shadow: var(--shadow);
   opacity: 0;
-  transform: translateY(20px);
   pointer-events: none;
-  transition: opacity 0.3s, transform 0.3s;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .toast.show {
@@ -266,34 +407,87 @@ body.dark-mode .todo-actions button:hover {
   pointer-events: auto;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
+/* Footer */
+.app-footer {
+  text-align: center;
+  padding: 1rem;
+  margin-top: auto;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.app-footer nav {
+  margin-top: 0.5rem;
+}
+
+.app-footer a {
+  color: var(--muted);
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+
+.app-footer a:hover {
+  color: var(--text);
+}
+
+/* Animations via GSAP */
+.todo-enter {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.todo-exit {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .app {
+    margin: 1rem;
+  }
+
+  .task-input .input-group {
+    grid-template-columns: 1fr;
+  }
+
+  .task-controls .toolbar {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .search-group {
+    width: 100%;
+  }
+
+  #search {
+    width: 100%;
+  }
+
+  .task-footer .controls {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .action-buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .settings-panel {
+    width: 100%;
   }
 }
 
-@media (max-width: 640px) {
-  .app {
-    padding: 16px;
-  }
-
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  #todo-form {
-    flex-direction: column;
-  }
-
-  .controls {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .stats {
-    order: -1;
-    width: 100%;
-    text-align: center;
-  }
+/* Visually Hidden */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
