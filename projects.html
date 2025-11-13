@@ -1,0 +1,62 @@
+x<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Portfolio Projects by Sumit Sahani - Showcasing web development, design, and UI/UX work" />
+  <meta name="keywords" content="projects, portfolio, Sumit Sahani, web development, UI/UX" />
+  <title>SkillShowcase | Projects by Sumit Sahani</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body data-page="projects">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <button class="theme-toggle" id="theme-toggle-projects" aria-label="Toggle dark mode" aria-pressed="false"><i class="fas fa-moon"></i></button>
+
+  <nav aria-label="Main navigation" class="sticky-nav">
+    <div class="nav-left">
+      <a class="logo" href="index.html">SkillShowcase</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><i class="fas fa-bars"></i></button>
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html" aria-current="page">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main id="main-content" class="container">
+    <header class="page-header">
+      <h1>Projects Showcase</h1>
+      <p>A collection of my recent web development projects demonstrating modern techniques, responsive design, and best practices. Filter by category or search to find what interests you.</p>
+    </header>
+
+    <section id="projects-grid" aria-labelledby="projects-heading">
+      <h2 id="projects-heading">Project Gallery</h2>
+
+      <div class="projects-controls">
+        <div class="filter-group" role="tablist" aria-label="Project categories">
+          <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter-btn" data-filter="web">Web Apps</button>
+          <button class="filter-btn" data-filter="design">Design</button>
+          <button class="filter-btn" data-filter="tools">Tools</button>
+        </div>
+        <input type="search" id="projects-search" placeholder="Search projects..." aria-label="Search projects">
+      </div>
+
+      <div class="projects-container" id="projects-container" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 SkillShowcase</p>
+    <a href="index.html" class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
+  </footer>
+
+  <script defer src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script defer src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <script defer src="script.js"></script>
+</body>
+</html>
